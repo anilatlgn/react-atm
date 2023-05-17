@@ -4,7 +4,7 @@ import './Login.css';
 const Login = () => {
     const [isLoginForm, setIsLoginForm] = useState(true);
     const [registerData, setRegisterData] = useState({
-        name: '',
+        username: '',
         email: '',
         password: '',
     });
@@ -15,7 +15,7 @@ const Login = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-
+        console.log(registerData);        
         // Make the API call using fetch
         fetch('http://localhost:4444/api/v1/register', {
             method: 'POST',
@@ -81,15 +81,24 @@ const Login = () => {
                         {/* Example: */}
                         <div className="form-group">
                             <label htmlFor="register-name">Name</label>
-                            <input type="text" id="register-name" placeholder="Enter your name" />
+                            <input type="text" id="register-name" placeholder="Enter your name" 
+                            name="username"
+                            value={registerData.username}
+                            onChange={handleInputChange}/>
                         </div>
                         <div className="form-group">
                             <label htmlFor="register-email">Email</label>
-                            <input type="email" id="register-email" placeholder="Enter your email" />
+                            <input type="email" id="register-email" placeholder="Enter your email"
+                            name="email"
+                            value={registerData.email}
+                            onChange={handleInputChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="register-password">Password</label>
-                            <input type="password" id="register-password" placeholder="Enter your password" />
+                            <input type="password" id="register-password" placeholder="Enter your password" 
+                            name="password"
+                            value={registerData.password}
+                            onChange={handleInputChange}/>
                         </div>
                         <button type="submit">Register</button>
                     </form>
